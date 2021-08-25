@@ -1,5 +1,6 @@
-import React from "react";
-import TodoItem from "./TodoItem";
+import React from 'react';
+import PropTypes from 'prop-types';
+import TodoItem from './TodoItem';
 
 class TodosList extends React.Component {
   render() {
@@ -17,5 +18,9 @@ class TodosList extends React.Component {
     );
   }
 }
+
+TodosList.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+};
 
 export default TodosList;

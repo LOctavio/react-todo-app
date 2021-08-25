@@ -1,4 +1,5 @@
-import React from "react"
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function TodoItem(props) {
   return (
@@ -14,4 +15,8 @@ function TodoItem(props) {
   )
 }
 
-export default TodoItem
+TodoItem.propTypes = {
+  todo: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired,
+};
+
+export default TodoItem;
