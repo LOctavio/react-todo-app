@@ -1,5 +1,6 @@
-import React from "react"
-import styles from "./TodoItem.module.css"
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './TodoItem.module.css';
 
 class TodoItem extends React.Component {
   state = {
@@ -61,4 +62,14 @@ class TodoItem extends React.Component {
   }
 }
 
-export default TodoItem
+TodoItem.propTypes = {
+  todo: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+  }).isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
+};
+
+export default TodoItem;
