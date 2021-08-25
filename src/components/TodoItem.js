@@ -22,7 +22,17 @@ function TodoItem(props) {
       <button onClick={() => props.deleteTodoProps(id)}>Delete</button>
       <span style={completed ? completedStyle : null}>{title}</span>
     </li>
-  )
+  );
 }
 
-export default TodoItem
+TodoItem.propTypes = {
+  todo: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    completed: PropTypes.bool.isRequired,
+  }).isRequired,
+  handleChangeProps: PropTypes.string.isRequired,
+  deleteTodoProps: PropTypes.string.isRequired,
+};
+
+export default TodoItem;
