@@ -10,6 +10,10 @@ class TodoItem extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    console.log('Cleaning up...');
+  }
+
   handleEditing = () => {
     this.setState({
       editing: true,
@@ -22,10 +26,6 @@ class TodoItem extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    console.log("Cleaning up...")
-  }
- 
   render() {
     const completedStyle = {
       fontStyle: 'italic',
