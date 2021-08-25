@@ -48,7 +48,7 @@ class InputTodo extends Component {
 }
 
 InputTodo.propTypes = {
-  addTodoProps: PropTypes.string.isRequired,
+  addTodoProps: PropTypes.func.isRequired,
 };
 
 export default InputTodo;

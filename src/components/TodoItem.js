@@ -29,11 +29,11 @@ function TodoItem(props) {
 TodoItem.propTypes = {
   todo: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
   }).isRequired,
-  handleChangeProps: PropTypes.string.isRequired,
-  deleteTodoProps: PropTypes.string.isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

@@ -19,8 +19,8 @@ function TodosList(props) {
 
 TodosList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  handleChangeProps: PropTypes.string.isRequired,
-  deleteTodoProps: PropTypes.string.isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
 };
 
 export default TodosList;
