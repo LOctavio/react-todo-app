@@ -1,20 +1,24 @@
-import React from "react"
-import styles from "./TodoItem.module.css"
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './TodoItem.module.css';
 
 class TodoItem extends React.Component {
-  state = {
-    editing: false,
-  }  
+  constructor(props) {
+    super(props);
+    this.state = {
+      editing: false,
+    };
+  }
 
   handleEditing = () => {
     this.setState({
       editing: true,
-    })
+    });
   }
 
-  handleUpdatedDone = event => {
-    if (event.key === "Enter") {
-      this.setState({editing: false});
+  handleUpdatedDone = (event) => {
+    if (event.key === 'Enter') {
+      this.setState({ editing: false });
     }
   }
 
@@ -24,19 +28,25 @@ class TodoItem extends React.Component {
  
   render() {
     const completedStyle = {
-      fontStyle: "italic",
-      color: "#595959",
+      fontStyle: 'italic',
+      color: '#595959',
       opacity: 0.4,
-      textDecoration: "line-through",
-    }
-    const { completed, id, title } = this.props.todo
-    let viewMode = {}
-    let editMode = {}
+      textDecoration: 'line-through',
+    };
+    const {
+      todo,
+      setUpdate,
+      handleChangeProps,
+      deleteTodoProps,
+    } = this.props;
+    const { editing } = this.state;
+    const viewMode = {};
+    const editMode = {};
 
-    if (this.state.editing) {
-      viewMode.display = "none"
+    if (editing) {
+      viewMode.display = 'none';
     } else {
-      editMode.display = "none"
+      editMode.display = 'none';
     }
     return (
       <li className={styles.item}>
@@ -44,25 +54,36 @@ class TodoItem extends React.Component {
           <input
             type="checkbox"
             className={styles.checkbox}
-            checked={completed}
-            onChange={() => this.props.handleChangeProps(id)}
+            checked={todo.completed}
+            onChange={() => handleChangeProps(todo.id)}
           />
-          <button onClick={() => this.props.deleteTodoProps(id)}>Delete</button>
-          <span style={completed ? completedStyle : null}>{title}</span>
+          <button type="submit" onClick={() => deleteTodoProps(todo.id)}>Delete</button>
+          <span style={todo.completed ? completedStyle : null}>{todo.title}</span>
         </div>
         <input
           type="text"
           style={editMode}
           className={styles.textInput}
-          value={title}
-          onChange={e => {
-            this.props.setUpdate(e.target.value, id)
+          value={todo.title}
+          onChange={(e) => {
+            setUpdate(e.target.value, todo.id);
           }}
           onKeyDown={this.handleUpdatedDone}
         />
       </li>
-    )
+    );
   }
 }
 
-export default TodoItem
+TodoItem.propTypes = {
+  todo: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+  }).isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
+  setUpdate: PropTypes.func.isRequired,
+};
+
+export default TodoItem;
