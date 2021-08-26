@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
 
-function TodosList(props) {
+const TodosList = (props) => {
   const {
     handleChangeProps, deleteTodoProps, setUpdate, todos,
   } = props;
@@ -18,7 +18,7 @@ function TodosList(props) {
       ))}
     </ul>
   );
-}
+};
 
 TodosList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape()).isRequired,
